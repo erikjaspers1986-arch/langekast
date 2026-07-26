@@ -1,0 +1,11 @@
+LANGE’S SUPER KAST v15 — COMPLETE GITHUB RELEASE
+
+Upload naar de hoofdmap van je GitHub-repository:
+- index.html
+- style.css
+- script.js
+- manifest.webmanifest
+- sw.js
+- de volledige map assets
+
+Daarna committen naar main. GitHub Pages werkt automatisch bij.
