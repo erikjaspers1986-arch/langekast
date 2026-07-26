@@ -1,0 +1,23 @@
+{
+  "name": "Lange’s Super Kast v15",
+  "short_name": "Super Kast",
+  "description": "Lange’s Super Kast met vijf winlijnen, ALL INN, futuristisch bonuswiel en rewarded credits.",
+  "start_url": "./?v=15",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070b14",
+  "theme_color": "#10152d",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
