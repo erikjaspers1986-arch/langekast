@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#080a10">
-<title>Lange’s Super Kast</title>
+<title>Lange’s Super Kast v14</title>
 <style>
 :root{
   --bg:#06080e; --panel:#10131c; --panel2:#161b27; --text:#f7f9ff; --muted:#929db2;
@@ -210,15 +210,209 @@ footer{text-align:center;color:#687386;font-size:10px;margin-top:8px}
 <meta name="apple-mobile-web-app-title" content="Lange’s Super Kast">
 <meta name="mobile-web-app-capable" content="yes">
 
+
+<style>
+#line-mode-panel{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px;
+  background:linear-gradient(135deg,rgba(123,72,255,.18),rgba(255,193,7,.12));
+  position:relative;
+  overflow:hidden;
+}
+#line-mode-panel::after{
+  content:"";
+  position:absolute;
+  inset:-60% -20%;
+  background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);
+  transform:translateX(-120%) rotate(8deg);
+  pointer-events:none;
+}
+#line-mode-panel.mode-flash::after{
+  animation:modeSweep .8s ease;
+}
+#line-mode-panel.mode-flash{
+  animation:modePulse .65s ease;
+}
+#line-mode-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+#line-mode-title{
+  font-weight:900;
+  letter-spacing:.04em;
+}
+#line-multiplier{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:56px;
+  height:34px;
+  border-radius:999px;
+  font-weight:1000;
+  font-size:18px;
+  color:#111;
+  background:linear-gradient(180deg,#fff3a8,#ffbf00);
+  box-shadow:0 0 18px rgba(255,191,0,.45);
+  transform:scale(1);
+}
+#line-multiplier.pop{
+  animation:badgePop .55s cubic-bezier(.2,1.4,.4,1);
+}
+#line-visual{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  position:relative;
+  padding:8px;
+  border-radius:14px;
+  background:rgba(0,0,0,.25);
+}
+#line-visual .cell{
+  height:24px;
+  border-radius:7px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
+}
+#line-visual .line{
+  position:absolute;
+  left:8%;
+  right:8%;
+  height:3px;
+  border-radius:99px;
+  background:rgba(255,255,255,.18);
+  box-shadow:none;
+  opacity:.28;
+  transform-origin:center;
+  transition:.35s ease;
+}
+#line-visual .l1{top:25%}
+#line-visual .l2{top:50%}
+#line-visual .l3{top:75%}
+#line-visual .l4{top:50%;transform:rotate(21deg)}
+#line-visual .l5{top:50%;transform:rotate(-21deg)}
+#line-mode-panel.five .line{
+  opacity:1;
+  background:linear-gradient(90deg,#8c5cff,#ffcf33);
+  box-shadow:0 0 10px rgba(255,205,51,.65);
+}
+#line-mode-panel:not(.five) .l2{
+  opacity:1;
+  background:linear-gradient(90deg,#8c5cff,#ffcf33);
+  box-shadow:0 0 10px rgba(255,205,51,.65);
+}
+#effective-bet-note{
+  margin-top:9px;
+  font-weight:800;
+  text-align:center;
+}
+@keyframes modeSweep{
+  from{transform:translateX(-120%) rotate(8deg)}
+  to{transform:translateX(120%) rotate(8deg)}
+}
+@keyframes modePulse{
+  0%{transform:scale(1)}
+  45%{transform:scale(1.025)}
+  100%{transform:scale(1)}
+}
+@keyframes badgePop{
+  0%{transform:scale(.7) rotate(-8deg)}
+  60%{transform:scale(1.2) rotate(4deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+</style>
+
+
+<style>
+/* V14 futuristic bonus experience */
+.bonus-card{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(70,255,235,.18),transparent 28%),
+    radial-gradient(circle at 18% 8%,rgba(123,92,255,.35),transparent 34%),
+    radial-gradient(circle at 88% 90%,rgba(255,55,190,.24),transparent 34%),
+    linear-gradient(160deg,#060b1b 0%,#10152d 48%,#080914 100%);
+  border:1px solid rgba(130,245,255,.48);
+  box-shadow:0 0 35px rgba(47,228,255,.28),0 0 90px rgba(133,72,255,.22),inset 0 0 38px rgba(50,225,255,.08);
+}
+.bonus-card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;
+  background:linear-gradient(rgba(110,231,249,.14) 1px,transparent 1px),
+             linear-gradient(90deg,rgba(110,231,249,.14) 1px,transparent 1px);
+  background-size:22px 22px;mask-image:linear-gradient(to bottom,#000,transparent 72%);
+}
+.bonus-card::after{
+  content:"BONUS PROTOCOL";position:absolute;top:12px;right:16px;
+  color:#75fff0;font-size:9px;font-weight:1000;letter-spacing:2px;
+  text-shadow:0 0 12px #48fff0;
+}
+.bonus-card h2{
+  position:relative;color:#efffff;font-size:31px;letter-spacing:2px;
+  text-shadow:0 0 8px #fff,0 0 22px #2df7ff,0 0 38px #8d5cff;
+}
+.bonus-card p{position:relative;color:#b9c9ee}
+.wheel-wrap::before,.wheel-wrap::after{
+  content:"";position:absolute;inset:-9px;border-radius:50%;pointer-events:none;
+  border:1px solid rgba(84,255,238,.65);box-shadow:0 0 20px rgba(47,241,255,.42);
+  animation:orbitPulse 1.8s ease-in-out infinite alternate
+}
+.wheel-wrap::after{inset:-19px;border-style:dashed;animation:orbitSpin 14s linear infinite}
+#wheel{
+  border:7px solid #84fff1;
+  box-shadow:0 0 0 4px #171c48,0 0 28px #2df7ff,0 0 62px rgba(145,71,255,.58),inset 0 0 30px rgba(0,0,0,.7);
+}
+.wheel-pointer{
+  border-left-width:16px;border-right-width:16px;border-bottom:36px solid #80fff0;
+  filter:drop-shadow(0 0 10px #3fffe9) drop-shadow(0 4px 4px #000);
+}
+.wheel-center{
+  background:radial-gradient(circle,#f7ffff 0 10%,#46ffe6 20%,#7755ff 58%,#070b20 72%);
+  border:4px solid #abfff7;box-shadow:0 0 12px #fff,0 0 28px #3affec,0 0 50px #835eff;
+  animation:corePulse 1.1s ease-in-out infinite alternate
+}
+.bonus-total{
+  position:relative;color:#eafeff;background:rgba(4,10,31,.72);
+  border:1px solid rgba(76,255,234,.36);box-shadow:inset 0 0 18px rgba(54,244,255,.08);
+  text-shadow:0 0 10px rgba(87,255,236,.65)
+}
+.bonus-action{
+  position:relative;background:linear-gradient(135deg,#1c2d67,#5430a5 48%,#0f9ca7);
+  border:1px solid rgba(148,255,244,.45);box-shadow:0 0 19px rgba(61,239,255,.18)
+}
+@keyframes orbitPulse{to{transform:scale(1.025);opacity:.55}}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+@keyframes corePulse{to{transform:translate(-50%,-50%) scale(1.08)}}
+
+/* Rewarded-ad overlay */
+.ad-card{
+  width:min(420px,100%);padding:22px;border-radius:28px;text-align:center;
+  background:linear-gradient(160deg,#12182a,#090c15);
+  border:1px solid rgba(110,231,249,.3);box-shadow:0 0 45px rgba(110,231,249,.18)
+}
+.ad-logo{font-size:48px}.ad-card h2{margin:8px 0 4px}.ad-card p{color:#aeb9ce}
+.ad-screen{
+  height:170px;margin:14px 0;border-radius:20px;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 35%,rgba(110,231,249,.25),transparent 35%),linear-gradient(145deg,#1d2a4c,#17112f);
+  border:1px solid rgba(255,255,255,.09);font-size:24px;font-weight:1000
+}
+.ad-progress{height:10px;border-radius:999px;background:#202739;overflow:hidden}
+.ad-progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#6ee7f9,#8b5cf6,#ff5ea8);transition:width 1s linear}
+.ad-count{margin:9px 0;font-weight:900;color:#dffcff}
+</style>
+
 </head>
 <body>
 <main class="app">
   <div class="topbar">
     <div class="brand">
       <div class="logo">🤑</div>
-      <div class="titlewrap"><h1>Lange’s Super Kast</h1><span>Bonus Coin Edition</span></div>
+      <div class="titlewrap"><h1>Lange’s Super Kast</h1><span>Neon Reward Edition</span></div>
     </div>
-    <div class="statuspill">2026 MODE</div>
+    <div class="statuspill">V14 LIVE</div>
   </div>
 
   <div id="modeText" class="mode">Alleen de middelste winlijn is actief</div>
@@ -246,24 +440,43 @@ footer{text-align:center;color:#687386;font-size:10px;margin-top:8px}
   <div id="message" class="msg">Win eerst op de middelste lijn om 5 winlijnen vrij te spelen.</div>
 
   <div class="stats">
-    <div class="stat"><small>CREDITS</small><b id="credits">5000</b></div>
-    <div class="stat"><small>INZET</small><b id="bet">50</b></div>
-    <div class="stat"><small>HIGHSCORE</small><b id="highscore">5000</b></div>
+    <div class="stat"><small>CREDITS</small><b id="credits">10.000</b></div>
+    <div class="stat"><small>INZET</small><b id="bet">500</b></div>
+    <div class="stat"><small>HIGHSCORE</small><b id="highscore">10.000</b></div>
   </div>
 
   <div class="controls" id="betChoices">
-    <button type="button" class="bet-choice active" data-bet="50">INZET<br>50</button>
-    <button type="button" class="bet-choice" data-bet="100">INZET<br>100</button>
-    <button type="button" class="bet-choice" data-bet="250">INZET<br>250</button>
-    <button type="button" class="bet-choice" data-bet="500">INZET<br>500</button>
-    <button type="button" class="bet-choice" data-bet="1000">INZET<br>1000</button>
-    <button type="button" class="bet-choice all-in" id="allInBtn" data-allin="1">ALLES<br>IN</button>
+    <button type="button" class="bet-choice active" data-bet="500">INZET<br>500</button>
+    <button type="button" class="bet-choice" data-bet="1000">INZET<br>1.000</button>
+    <button type="button" class="bet-choice" data-bet="2500">INZET<br>2.500</button>
+    <button type="button" class="bet-choice" data-bet="5000">INZET<br>5.000</button>
+    <button type="button" class="bet-choice" data-bet="10000">INZET<br>10.000</button>
+    <button type="button" class="bet-choice all-in" id="allInBtn" data-allin="1">ALL<br>INN</button>
   </div>
   <div class="spin-row"><button type="button" class="go" id="spin">DRAAI</button></div>
 
+
+  <div id="line-mode-panel">
+    <div id="line-mode-top">
+      <div id="line-mode-title">WINLIJNEN</div>
+      <div id="line-multiplier">×1</div>
+    </div>
+    <div id="line-visual" aria-hidden="true">
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="line l1"></div>
+      <div class="line l2"></div>
+      <div class="line l3"></div>
+      <div class="line l4"></div>
+      <div class="line l5"></div>
+    </div>
+    <div id="effective-bet-note">Totale inzet: <span id="effective-bet">500</span></div>
+  </div>
+
   <button type="button" class="wide unlock" id="unlock">🔒 5 winlijnen vergrendeld</button>
   <button type="button" class="wide secondary" id="sound">🔊 Geluid aan</button>
-  <button type="button" class="wide secondary" id="reset">Nieuwe credits</button>
+  <button type="button" class="wide secondary" id="reset">📺 Bekijk reclame voor 10.000 credits</button>
 
   <div class="paytable">
     <div class="payitem"><span>🤑</span><b>100×</b><small>10% kans</small></div>
@@ -272,7 +485,7 @@ footer{text-align:center;color:#687386;font-size:10px;margin-top:8px}
     <div class="payitem"><span>💲</span><b>6×</b><small>45% kans</small></div>
   </div>
 
-  <div class="pay">Alleen 3 gelijke symbolen op één actieve winlijn betalen uit.<br>🪙 verschijnt alleen op de middelste rij en start alleen in het gouden middenvak de bonus.<br><b>ALLES IN:</b> zet al je credits in — 50% kans op winst, 50% kans om alles te verliezen.</div>
+  <div class="pay">Alleen 3 gelijke symbolen op één actieve winlijn betalen uit.<br>🪙 verschijnt alleen op de middelste rij en start alleen in het gouden middenvak de bonus.<br><b>ALL INN:</b> zet al je credits in — 50% kans op winst, 50% kans om alles te verliezen.<br>Hogere inzetten worden pas beschikbaar zodra je genoeg credits hebt opgebouwd.<br>Bij 5 winlijnen wordt de gekozen inzet automatisch ×5.</div>
   <footer>Alleen speelcredits — geen echt geld</footer>
 </main>
 
@@ -299,6 +512,19 @@ footer{text-align:center;color:#687386;font-size:10px;margin-top:8px}
 </div>
 <div id="confetti" class="conf"></div>
 
+<div id="adOverlay" class="overlay">
+  <div class="ad-card">
+    <div class="ad-logo">📺</div>
+    <h2>REWARDED AD</h2>
+    <p>Bekijk de korte demo-reclame en ontvang daarna 10.000 credits.</p>
+    <div class="ad-screen">LANGE’S FUTURE CASINO</div>
+    <div class="ad-progress"><span id="adProgress"></span></div>
+    <div id="adCountdown" class="ad-count">10 seconden</div>
+    <button id="adRewardBtn" class="bonus-action" disabled>Even wachten…</button>
+    <button id="adCancelBtn" class="wide secondary">Annuleren</button>
+  </div>
+</div>
+
 <script>
 (function(){
 "use strict";
@@ -308,7 +534,7 @@ var symbolWeights=[
 ];
 var payouts={"🤑":100,"💰":40,"💵":15,"💲":6};
 
-var credits=5000,bet=50,highscore=5000,busy=false,soundOn=true,audioCtx=null,allInMode=false;
+var credits=10000,bet=500,highscore=10000,busy=false,soundOn=true,audioCtx=null,allInMode=false;
 var unlocked=false,fiveLines=false;
 var bonusWin=0,bonusBaseBet=0,wheelBusy=false,wheelRotation=0,grandJackpot=100000;
 
@@ -341,16 +567,47 @@ var lineEls=[
   document.getElementById("botLine"),document.getElementById("diag1"),document.getElementById("diag2")
 ];
 var modeText=document.getElementById("modeText");
+var adOverlay=document.getElementById("adOverlay");
+var adProgress=document.getElementById("adProgress");
+var adCountdown=document.getElementById("adCountdown");
+var adRewardBtn=document.getElementById("adRewardBtn");
+var adCancelBtn=document.getElementById("adCancelBtn");
+var adTimer=null,adSeconds=10;
+
+function formatCredits(n){
+  return Math.floor(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,".");
+}
+
+function getEffectiveBet(){
+  if(allInMode)return credits;
+  var multiplier=fiveLines?5:1;
+  return Number(bet)*multiplier;
+}
+
+function animateLineMode(){
+  lineModePanel.classList.remove("mode-flash");
+  lineMultiplier.classList.remove("pop");
+  void lineModePanel.offsetWidth;
+  lineModePanel.classList.add("mode-flash");
+  lineMultiplier.classList.add("pop");
+}
 
 function update(){
-  creditsEl.textContent=String(credits);
-  betEl.textContent=String(bet);
-  highscoreEl.textContent=String(highscore);
-  spinBtn.disabled=busy||credits<bet;
+  var effectiveBet=getEffectiveBet();
+  creditsEl.textContent=formatCredits(credits);
+  betEl.textContent=formatCredits(getEffectiveBet());
+  highscoreEl.textContent=formatCredits(highscore);
+  effectiveBetEl.textContent=formatCredits(getEffectiveBet());
+  lineMultiplier.textContent=fiveLines?"×5":"×1";
+  lineModePanel.classList.toggle("five",fiveLines);
+  spinBtn.disabled=busy||credits<effectiveBet;
   betButtons.forEach(function(btn){
     var value=parseInt(btn.getAttribute("data-bet"),10);
+    var shown=value*(fiveLines?5:1);
+    btn.innerHTML="INZET<br>"+formatCredits(shown);
     btn.classList.toggle("active",!allInMode&&value===bet);
-    btn.disabled=busy||credits<value;
+    btn.disabled=busy||credits<shown;
+    btn.setAttribute("aria-label","Inzet "+formatCredits(shown));
   });
   allInBtn.classList.toggle("active",allInMode);
   allInBtn.disabled=busy||credits<=0;
@@ -359,10 +616,10 @@ function update(){
     unlockBtn.textContent="🔒 5 winlijnen vergrendeld";
     unlockBtn.className="wide unlock";unlockBtn.disabled=true;
   }else if(!fiveLines){
-    unlockBtn.textContent="Activeer 5 winlijnen";
+    unlockBtn.textContent="Activeer 5 winlijnen — inzet wordt ×5";
     unlockBtn.className="wide unlock ready";unlockBtn.disabled=false;
   }else{
-    unlockBtn.textContent="5 winlijnen actief";
+    unlockBtn.textContent="✅ 5 winlijnen actief — inzet ×5";
     unlockBtn.className="wide unlock";unlockBtn.disabled=false;
   }
 
@@ -459,7 +716,7 @@ var wheelSegments=[
   {label:"1000×",type:"mult",value:1000},
   {label:"GRAND",type:"grand",value:0}
 ];
-var wheelColors=["#7c3aed","#ff5ea8","#06b6d4","#f97316","#2563eb","#10b981","#ef4444","#ffd166"];
+var wheelColors=["#5b32ff","#ff36bd","#00dff2","#ff7a24","#316dff","#00d99a","#ff365f","#f5e85b"];
 
 function drawWheel(){
   var cx=350,cy=350,r=330,n=wheelSegments.length,arc=Math.PI*2/n;
@@ -469,11 +726,11 @@ function drawWheel(){
     var a0=-Math.PI/2+i*arc,a1=a0+arc;
     wheelCtx.beginPath();wheelCtx.moveTo(0,0);wheelCtx.arc(0,0,r,a0,a1);wheelCtx.closePath();
     wheelCtx.fillStyle=wheelColors[i];wheelCtx.fill();
-    wheelCtx.strokeStyle="rgba(255,255,255,.75)";wheelCtx.lineWidth=4;wheelCtx.stroke();
+    wheelCtx.strokeStyle="rgba(150,255,245,.82)";wheelCtx.lineWidth=5;wheelCtx.stroke();
     wheelCtx.save();
     wheelCtx.rotate(a0+arc/2);
     wheelCtx.textAlign="right";wheelCtx.textBaseline="middle";
-    wheelCtx.fillStyle="#fff";wheelCtx.font="900 34px system-ui";
+    wheelCtx.fillStyle="#f4ffff";wheelCtx.font="900 34px system-ui";
     wheelCtx.shadowColor="rgba(0,0,0,.8)";wheelCtx.shadowBlur=7;
     wheelCtx.fillText(wheelSegments[i].label,r-35,0);
     wheelCtx.restore();
@@ -556,7 +813,7 @@ function finish(grid){
 
   var allLines=getLines(grid);
   var active=fiveLines?[0,1,2,3,4]:[1];
-  var lineBet=fiveLines?Math.max(1,Math.floor(bet/5)):bet;
+  var lineBet=bet;
   var totalWin=0,hits=[],biggest=0;
 
   for(var i=0;i<active.length;i++){
@@ -587,15 +844,48 @@ function finish(grid){
   busy=false;update();
 }
 
+
+function activePaylinesForGrid(grid){
+  var lines=[
+    [[1,0],[1,1],[1,2]]
+  ];
+  if(fiveLines){
+    lines=[
+      [[0,0],[0,1],[0,2]],
+      [[1,0],[1,1],[1,2]],
+      [[2,0],[2,1],[2,2]],
+      [[0,0],[1,1],[2,2]],
+      [[2,0],[1,1],[0,2]]
+    ];
+  }
+  return lines;
+}
+
+function gridHasOrdinaryWin(grid){
+  return activePaylinesForGrid(grid).some(function(line){
+    var a=grid[line[0][0]][line[0][1]];
+    var b=grid[line[1][0]][line[1][1]];
+    var c=grid[line[2][0]][line[2][1]];
+    return a!=="🪙"&&a===b&&b===c;
+  });
+}
+
+function forceLosingGrid(){
+  return [
+    ["🤑","💰","💵"],
+    ["💲","💵","💰"],
+    ["💰","🤑","💲"]
+  ];
+}
+
 function spin(){
-  var actualBet=allInMode?credits:bet;
+  var actualBet=getEffectiveBet();
   if(busy||actualBet<=0||credits<actualBet)return;
   busy=true;
-  bet=actualBet;
   credits-=actualBet;
   grandJackpot+=Math.max(1,Math.floor(actualBet*0.02));
   messageEl.className="msg";
-  messageEl.textContent=allInMode?"ALLES IN — alles of niets...":"Rollen draaien...";
+  messageEl.textContent=allInMode?"ALL INN — alles of niets...":"Rollen draaien...";
   columns.forEach(function(x){x.classList.add("spin")});update();
 
   var timer=setInterval(function(){
@@ -622,6 +912,9 @@ function spin(){
     }
   }else{
     for(var rr=0;rr<3;rr++)for(var cc2=0;cc2<3;cc2++)grid[rr][cc2]=pickForCell(rr,cc2);
+    if(gridHasOrdinaryWin(grid)&&Math.random()>0.30){
+      grid=forceLosingGrid();
+    }
   }
 
   setTimeout(function(){
@@ -629,22 +922,29 @@ function spin(){
     for(var r=0;r<3;r++)for(var c=0;c<3;c++)cells[r][c].textContent=grid[r][c];
     columns.forEach(function(x){x.classList.remove("spin")});
     var wasAllIn=allInMode;
-    allInMode=false;
     finish(grid);
-    if(wasAllIn&&credits===0){
-      messageEl.className="msg";
-      messageEl.textContent="ALLES IN verloren — al je credits zijn weg.";
+    if(wasAllIn){
+      if(credits===0){
+        allInMode=false;
+        messageEl.className="msg";
+        messageEl.textContent="ALL INN verloren — al je credits zijn weg.";
+      }else{
+        allInMode=true;
+        messageEl.className="msg win";
+        messageEl.textContent="ALL INN blijft actief: volgende inzet is automatisch "+formatCredits(credits)+" credits.";
+      }
+      update();
     }
   },1150);
 }
 
 spinBtn.addEventListener("click",spin);
-spinBtn.addEventListener("touchend",function(e){e.preventDefault();spin()});
+
 betButtons.forEach(function(btn){
   btn.addEventListener("click",function(){
     if(busy)return;
     var value=parseInt(btn.getAttribute("data-bet"),10);
-    if(credits>=value){allInMode=false;bet=value;messageEl.className="msg";messageEl.textContent="Inzet ingesteld op "+bet+" credits.";tone(650,.06);update();}
+    var required=value*(fiveLines?5:1);if(credits>=required){allInMode=false;bet=value;messageEl.className="msg";messageEl.textContent="Totale inzet ingesteld op "+formatCredits(required)+" credits.";tone(650,.06);update();}
   });
 });
 allInBtn.addEventListener("click",function(){
@@ -652,20 +952,56 @@ allInBtn.addEventListener("click",function(){
   allInMode=true;
   bet=credits;
   messageEl.className="msg win";
-  messageEl.textContent="ALLES IN geselecteerd: "+credits+" credits. 50% kans op winst, 50% kans alles kwijt.";
+  messageEl.textContent="ALL INN geselecteerd: "+formatCredits(credits)+" credits. 50% kans op winst, 50% kans alles kwijt.";
   tone(920,.12);update();
 });
 unlockBtn.addEventListener("click",function(){
   if(!unlocked||busy)return;
   fiveLines=!fiveLines;
-  if(fiveLines){messageEl.textContent="Vijf winlijnen actief."}
-  else{messageEl.textContent="Terug naar de middelste winlijn."}
-  update();tone(750,.1);
+  update();
+  animateLineMode();
+  var total=getEffectiveBet();
+  if(fiveLines){
+    messageEl.className="msg win";
+    messageEl.textContent="5 winlijnen actief — totale inzet nu ×5: "+formatCredits(total)+" credits.";
+    tone(980,.12);setTimeout(function(){tone(1240,.12)},110);
+  }else{
+    messageEl.className="msg";
+    messageEl.textContent="1 winlijn actief — totale inzet terug naar "+formatCredits(total)+" credits.";
+    tone(720,.12);
+  }
 });
 resetBtn.addEventListener("click",function(){
-  credits=5000;bet=50;unlocked=false;fiveLines=false;busy=false;allInMode=false;grandJackpot=100000;
-  messageEl.className="msg";messageEl.textContent="Win eerst op de middelste lijn om 5 winlijnen vrij te spelen.";
-  update();tone(600,.08);
+  if(busy)return;
+  adSeconds=10;
+  adProgress.style.width="0%";
+  adCountdown.textContent="10 seconden";
+  adRewardBtn.disabled=true;
+  adRewardBtn.textContent="Even wachten…";
+  adOverlay.classList.add("show");
+  if(adTimer)clearInterval(adTimer);
+  adTimer=setInterval(function(){
+    adSeconds--;
+    adProgress.style.width=((10-adSeconds)*10)+"%";
+    adCountdown.textContent=adSeconds>0?adSeconds+" seconden":"Reclame voltooid";
+    if(adSeconds<=0){
+      clearInterval(adTimer);adTimer=null;
+      adRewardBtn.disabled=false;
+      adRewardBtn.textContent="Ontvang 10.000 credits";
+    }
+  },1000);
+});
+adCancelBtn.addEventListener("click",function(){
+  if(adTimer){clearInterval(adTimer);adTimer=null;}
+  adOverlay.classList.remove("show");
+});
+adRewardBtn.addEventListener("click",function(){
+  if(adRewardBtn.disabled)return;
+  credits=10000;bet=500;unlocked=false;fiveLines=false;busy=false;allInMode=false;grandJackpot=100000;
+  adOverlay.classList.remove("show");
+  messageEl.className="msg win";
+  messageEl.textContent="Reclame voltooid — 10.000 credits ontvangen.";
+  update();
 });
 soundBtn.addEventListener("click",function(){
   soundOn=!soundOn;soundBtn.textContent=soundOn?"🔊 Geluid aan":"🔇 Geluid uit";if(soundOn)tone(700,.08);
